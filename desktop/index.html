@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/main.css">
+    <title>Socket App</title>
+</head>
+<body>
+    <section id="chats">
+        <div class="header">
+            <form action="">
+                <input type="text" name="name" id="name" placeholder="name">
+                <button class="name-submit" type="submit">Thats my name</button>
+            </form>
+            <h1>Good morning, <span class="name"></span></h1>
+        </div>
+    </section>
+    <section id="message-input">
+        <form class="message-form">
+            <div class="message-input">
+                <textarea type="text" name="message" id="message" placeholder="Write a message..">
+                </textarea>
+            </div>
+            <button type="submit" class="submit-btn">&rightarrow;</button>
+        </form>
+    </section>
+    <script>
+        var net = require('net');
+        console.log('done importing')
+        var client = new net.Socket();
+        client.connect(5050, "127.0.0.1");
+
+        var name = "";
+
+        const addMessage = (author, text) => {
+            const container = `<div class="container chat"><h1 class="username">${author}</h1><p>${text}</p>`;
+            document.querySelector("#chats").innerHTML += container;
+        }
+
+        client.on('data', (data)=>{
+            var message = JSON.parse(data.toString());
+            console.log(message);
+            addMessage(message.name, message.text);
+        });
+
+        document.querySelector('.message-form').addEventListener('submit', (e)=>{
+            e.preventDefault();
+            messageText = document.querySelector("#message").value;
+
+            data = JSON.stringify({ name: name , text: messageText });
+            client.write(data);
+            addMessage(name,messageText);
+            document.querySelector("#message").value = "";
+        })
+
+        document.querySelector(".header form").addEventListener('submit', (e)=>{
+            e.preventDefault();
+            name = document.querySelector(".header form input").value;
+            document.querySelector(".header form").style.display = "none";
+            document.querySelector(".name").textContent = name;
+        });
+    </script>
+</body>
+</html>

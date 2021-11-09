@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Monument;
+    src: url("FontsFree-Net-Akira-Expanded-Demo.ttf")
+    format("truetype");
+}
+
+@font-face {
+    font-family: Object Sans;
+    src: url("ObjectSans-Regular.otf")
+    format("opentype");
+}
+
+::-webkit-scrollbar{
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #333;
+}
+
+body{
+    background: #212121;
+    color: #fafafa;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1{
+    font-family: Monument;
+    font-size: 4.8056vw;
+}
+
+p{
+    font-family: Object Sans, sans-serif;
+    font-size: 82.5%;
+}
+
+#chats{
+    flex: 1;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.header{
+    padding: 20px 4.33vw;
+}
+
+.notification{
+    padding: 0px 4.33vw;
+    margin-bottom: 10px;
+}
+
+.notification .main{
+    padding: 3px 20px;
+    background: rgba(255, 68, 0, 0.265);
+    text-transform: uppercase;
+}
+
+.username{
+    text-transform: uppercase;
+    font-size: 3.33vw;
+    margin-bottom: 10px;
+    width: 92%;
+    margin-left: auto;
+}
+
+.chat{
+    padding: 15px 4.33vw;
+    border-bottom: 1px solid #333;
+}
+
+.chat p{
+    font-family: 80%;
+    width: 92%;
+    margin-left: auto;
+}
+
+.address{
+    opacity: .7;
+    font-family: Object Sans;
+}
+
+#message-input{
+    width: 100%;
+    display: inline;
+    padding: 10px 4.33vw;
+}
+
+#message-input form{
+    display: flex;
+    justify-content: space-between;
+    background: #333;
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+}
+
+.message-input{
+    flex: 1;
+    background: #212121;
+}
+
+.message-input textarea{
+    box-sizing: border-box;
+    width: 100%;
+    background: transparent;
+    outline: none;
+    border-radius: 5px;
+    padding: 0px 5px;
+    border: none;
+    color: #fafafa;
+    font-family: Object Sans;
+    resize: none;
+}
+
+.submit-btn{
+    margin-left: 10px;
+    background: blue;
+    border-radius: 5px;
+    border: none;
+    color: #fafafa;
+    padding: 0px 10px;
+}
